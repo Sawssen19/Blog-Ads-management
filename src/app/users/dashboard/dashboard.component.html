@@ -1,0 +1,95 @@
+<div style="display: flex; justify-content: space-between; padding: 10px">
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      font-size: medium;
+      font-weight: 500;
+    "
+  >
+    Liste des évènements :
+  </div>
+  <div style="display: flex; align-items: center; gap: 5px;">
+    <button mat-raised-button (click)="onBlogClick()">
+      Blogs
+    </button>
+    <button mat-raised-button color="primary" (click)="signOut()">
+      déconnecter
+    </button>
+  </div>
+</div>
+<div class="flex-container">
+  <mat-card class="flex-item" *ngFor="let event of eventList">
+    <div
+      style="
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 20px;
+      "
+    >
+      <div
+        style="font-size: medium; font-weight: bold; color: rgb(96, 96, 136)"
+      >
+        {{ event.title }}
+      </div>
+      <div
+        style="
+          border: 1px solid orange;
+          border-radius: 10px;
+          padding: 3px;
+          background-color: rgb(212, 194, 160);
+          color: rgb(121, 78, 78);
+        "
+      >
+        {{ event.price }} dinars
+      </div>
+    </div>
+    <div style="height: 250px">
+      <img
+        alt=""
+        [src]="event.url"
+        style="object-fit: cover; height: 100%; width: 100%"
+      />
+    </div>
+    <div style="padding: 5px">{{ event.description }}</div>
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+        width: 100%;
+      "
+    >
+      <div style="display: flex; gap: 5px">
+        <div style="display: flex; align-items: center">
+          <div *ngFor="let star of stars; let i = index">
+            <mat-icon [ngStyle]="{ color: i < event.rate ? 'yellow' : 'black' }"
+              >star</mat-icon
+            >
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            cursor: pointer;
+          "
+          (click)="rateEvent()"
+        >
+          <mat-icon style="width: 20px; height: 20px">rate_review</mat-icon>
+        </div>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openReservationDialog(event.title)"
+      >
+        Réserver
+      </button>
+    </div>
+  </mat-card>
+</div>

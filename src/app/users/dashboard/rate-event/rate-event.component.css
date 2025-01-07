@@ -1,0 +1,7 @@
+.star-container {
+  color: black;
+  transform: scale(2);
+  padding: 0 10px;
+  cursor: pointer;
+}
+

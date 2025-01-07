@@ -1,0 +1,71 @@
+<div class="blog-container" [@fadeIn]>
+  <div class="blog-header">
+    <h2>Blogs</h2>
+    <div class="header-controls">
+      <div class="search-bar">
+        <mat-form-field appearance="outline">
+          <mat-label>Rechercher</mat-label>
+          <input matInput [(ngModel)]="searchTerm" (keyup)="onSearch()">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      
+      <div class="view-options">
+        <button mat-button [matMenuTriggerFor]="viewMenu">
+          <mat-icon>view_list</mat-icon>
+          Vue
+        </button>
+        <mat-menu #viewMenu="matMenu">
+          <button mat-menu-item (click)="changeView('grid')" [class.active]="currentView === 'grid'">
+            <mat-icon>grid_view</mat-icon>
+            Grille
+          </button>
+          <button mat-menu-item (click)="changeView('list')" [class.active]="currentView === 'list'">
+            <mat-icon>view_list</mat-icon>
+            Liste
+          </button>
+        </mat-menu>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="openCreateBlogDialog()">
+        <mat-icon>add</mat-icon> Créer un nouveau blog
+      </button>
+    </div>
+  </div>
+
+  <mat-tab-group (selectedTabChange)="onTabChange($event)">
+    <mat-tab label="Tous les blogs">
+      <div [class]="'blog-' + currentView">
+        <mat-card *ngFor="let blog of blogs" class="blog-card" [@fadeIn]>
+          <mat-card-header>
+            <mat-card-title>{{ blog.title }}</mat-card-title>
+            <mat-card-subtitle>
+              <div class="blog-meta">
+                <span><mat-icon>person</mat-icon> {{ blog.author }}</span>
+                <span><mat-icon>access_time</mat-icon> {{ blog.createdAt | date }}</span>
+                <span><mat-icon>comment</mat-icon> {{ blog.commentsCount }}</span>
+              </div>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image *ngIf="blog.imageUrl" [src]="blog.imageUrl" [alt]="blog.title">
+          <mat-card-content>
+            <p class="blog-preview">{{ blog.content | slice:0:200 }}...</p>
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of blog.tags" color="accent" selected>{{ tag }}</mat-chip>
+            </mat-chip-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="likeBlog(blog.id)" [color]="blog.isLiked ? 'accent' : ''">
+              <mat-icon>{{ blog.isLiked ? 'favorite' : 'favorite_border' }}</mat-icon>
+              {{ blog.likes }}
+            </button>
+            <button mat-button [routerLink]="['/blogs', blog.id]">
+              <mat-icon>visibility</mat-icon>
+              Lire plus
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

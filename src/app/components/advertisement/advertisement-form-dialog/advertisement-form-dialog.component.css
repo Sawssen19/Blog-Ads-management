@@ -1,0 +1,28 @@
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+mat-dialog-content {
+  min-width: 400px;
+  padding: 20px;
+}
+
+mat-dialog-actions {
+  padding: 16px;
+  justify-content: flex-end;
+}
+
+button {
+  margin-left: 8px;
+}

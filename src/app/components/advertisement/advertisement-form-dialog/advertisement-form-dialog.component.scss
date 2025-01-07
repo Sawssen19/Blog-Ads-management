@@ -1,0 +1,40 @@
+.dialog-content {
+  padding: 20px;
+  min-width: 400px;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 24px 24px;
+}
+
+.mat-mdc-dialog-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.half-width {
+  width: 50%;
+}
+
+mat-form-field {
+  margin-bottom: 16px;
+}

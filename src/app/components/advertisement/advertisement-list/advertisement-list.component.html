@@ -1,0 +1,112 @@
+<div class="advertisement-list-container">
+  <div class="header">
+    <h2>Liste des publicités</h2>
+    <button mat-raised-button color="primary" (click)="openAdDialog()">
+      <mat-icon>add</mat-icon>
+      Nouvelle publicité
+    </button>
+  </div>
+
+  <div class="filters">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="selectedType" (selectionChange)="applyFilters()">
+        <mat-option value="all">Tous</mat-option>
+        <mat-option value="banner">Bannière</mat-option>
+        <mat-option value="video">Vidéo</mat-option>
+        <mat-option value="popup">Pop-up</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Position</mat-label>
+      <mat-select [(ngModel)]="selectedPosition" (selectionChange)="applyFilters()">
+        <mat-option value="all">Toutes</mat-option>
+        <mat-option value="header">En-tête</mat-option>
+        <mat-option value="sidebar">Barre latérale</mat-option>
+        <mat-option value="footer">Pied de page</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Statut</mat-label>
+      <mat-select [(ngModel)]="selectedStatus" (selectionChange)="applyFilters()">
+        <mat-option value="all">Tous</mat-option>
+        <mat-option value="active">Active</mat-option>
+        <mat-option value="paused">En pause</mat-option>
+        <mat-option value="ended">Terminée</mat-option>
+        <mat-option value="scheduled">Planifiée</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let ad">
+          <img [src]="ad.imageUrl" alt="Ad thumbnail" class="ad-thumbnail" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
+        <td mat-cell *matCellDef="let ad">{{ ad.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+        <td mat-cell *matCellDef="let ad">
+          <mat-chip-list>
+            <mat-chip>{{ ad.type }}</mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+        <td mat-cell *matCellDef="let ad">{{ ad.position }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dates">
+        <th mat-header-cell *matHeaderCellDef>Dates</th>
+        <td mat-cell *matCellDef="let ad">
+          {{ ad.startDate | date }} - {{ ad.endDate | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let ad">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editAd(ad)">
+              <mat-icon>edit</mat-icon>
+              <span>Modifier</span>
+            </button>
+            <button mat-menu-item (click)="duplicateAd(ad)">
+              <mat-icon>content_copy</mat-icon>
+              <span>Dupliquer</span>
+            </button>
+            <button mat-menu-item (click)="updateAdStatus(ad, ad.status === 'active' ? 'paused' : 'active')">
+              <mat-icon>{{ ad.status === 'active' ? 'pause' : 'play_arrow' }}</mat-icon>
+              <span>{{ ad.status === 'active' ? 'Mettre en pause' : 'Activer' }}</span>
+            </button>
+            <button mat-menu-item (click)="deleteAd(ad)" class="delete-button">
+              <mat-icon>delete</mat-icon>
+              <span>Supprimer</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

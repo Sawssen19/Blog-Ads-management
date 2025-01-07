@@ -1,0 +1,73 @@
+.signup-container {
+  width: 100vw;
+  height: calc(100vh - 52px);
+}
+
+.signup-form-container {
+  padding: 50px 50px 20px 50px !important;
+  width: min(800px, 90vw);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.th-signup-body {
+  height: 90%;
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+}
+
+.optimasoft-infos {
+  position: absolute;
+  bottom: 32px;
+}
+.signup-body {
+  position: relative;
+}
+
+.conditions-link {
+  font-weight: 600;
+  cursor: pointer;
+  color: #67666e;
+}
+a:link {
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #67666e;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: #75a7f3;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.auth-signup-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.2px;
+  color: #3c3c3d;
+  margin-bottom: 15px;
+}
+
+.auth-copyright-container {
+  font-weight: 600;
+}
+#th-signup-content {
+  background: url(./../../../src/assets/logos/background-3.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+.ns-radio-button {
+  margin-right: 10px;
+}

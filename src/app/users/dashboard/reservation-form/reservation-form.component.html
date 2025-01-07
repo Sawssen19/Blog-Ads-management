@@ -1,0 +1,83 @@
+<div style="font-size: large; font-weight: bold; padding-bottom: 25px">
+  Reserver l'évènement {{ data }}
+</div>
+
+<form class="example-form">
+  <mat-form-field class="email-input" [appearance]="'outline'">
+    <mat-label>Nom</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="reservationFormGroup.controls.lastNameCtrl"
+      placeholder="Votre nom"
+    />
+    <mat-error
+      *ngIf="
+        reservationFormGroup.controls.lastNameCtrl.touched &&
+        reservationFormGroup.controls.lastNameCtrl.hasError('required')
+      "
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+</form>
+<form class="example-form">
+  <mat-form-field class="email-input" [appearance]="'outline'">
+    <mat-label>Prénom</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="reservationFormGroup.controls.firstNameCtrl"
+      placeholder="Votre prénom"
+    />
+    <mat-error
+      *ngIf="
+        reservationFormGroup.controls.firstNameCtrl.touched &&
+        reservationFormGroup.controls.firstNameCtrl.hasError('required')
+      "
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+</form>
+<form class="example-form">
+  <mat-form-field class="email-input" [appearance]="'outline'">
+    <mat-label>E-mail</mat-label>
+    <input
+      type="email"
+      matInput
+      [formControl]="reservationFormGroup.controls.emailCtrl"
+      placeholder="Ex. example@example.com"
+    />
+    <mat-error
+      *ngIf="
+        reservationFormGroup.controls.emailCtrl.touched &&
+        reservationFormGroup.controls.emailCtrl.hasError('required')
+      "
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+</form>
+<form class="example-form">
+  <mat-form-field class="email-input" [appearance]="'outline'">
+    <mat-label>Numéro de téléphone</mat-label>
+    <input
+      type="number"
+      matInput
+      [formControl]="reservationFormGroup.controls.phoneNumberCtrl"
+      placeholder="+21625351642"
+    />
+    <mat-error
+      *ngIf="
+        reservationFormGroup.controls.phoneNumberCtrl.touched &&
+        reservationFormGroup.controls.phoneNumberCtrl.hasError('required')
+      "
+      >Ce champ est obligatoire</mat-error
+    >
+  </mat-form-field>
+</form>
+<div style="display: flex; justify-content: flex-end; gap: 5px">
+  <button mat-flat-button (click)="onDenyClick()">Annuler</button>
+  <payment></payment>
+  <button mat-flat-button color="primary" (click)="onValidateForm()">
+    Valider
+  </button>
+</div>

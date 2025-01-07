@@ -1,0 +1,280 @@
+<div class="signup-container">
+  <div style="width: 100%; height: 100%; background-color: rgb(222, 229, 253)">
+    <div class="th-signup-body">
+      <div>
+        <div class="signup-form-container">
+          <div style="display: flex; gap: 5px; padding: 0 0 25px 10px">
+            <img
+              src="\assets\logos\sesame.png"
+              alt="logo"
+              width="300px"
+              height="100px"
+            />
+            <div
+              style="
+                color: rgba(0, 0, 0, 0.6);
+                text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0, 0, 0, 0.15);
+                font-size: x-large;
+                font-weight: bolder;
+                display: flex;
+                align-items: center;
+              "
+            >
+              Sesame
+            </div>
+          </div>
+          <form [formGroup]="signupForm" autocomplete="off">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                gap: 5px;
+                width: 100%;
+              "
+            >
+              <div class="form-group" style="flex: 1">
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>Prénom</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="Prénom"
+                    [formControl]="firstNameCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="
+                      firstNameCtrl.touched &&
+                      firstNameCtrl.hasError('required')
+                    "
+                  >
+                    <strong> Le prénom est obligatoire </strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group" style="flex: 1">
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>Nom</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    placeholder="Nom"
+                    [formControl]="lastNameCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="
+                      lastNameCtrl.touched && lastNameCtrl.hasError('required')
+                    "
+                  >
+                    <strong> Le nom est obligatoire </strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                gap: 5px;
+                width: 100%;
+              "
+            >
+              <div class="form-group" style="flex: 1">
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>Email address</mat-label>
+                  <input
+                    matInput
+                    type="email"
+                    placeholder="Email address"
+                    [formControl]="emailCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="emailCtrl.touched && emailCtrl.hasError('required')"
+                  >
+                    <strong> Required email address </strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="emailCtrl.touched && emailCtrl.hasError('email')"
+                  >
+                    <strong>This email is not valid</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="emailCtrl.touched && emailCtrl.hasError('format')"
+                  >
+                    <strong>This email is not valid</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group" style="flex: 1">
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    [type]="isVisiblePassword ? 'text' : 'password'"
+                    placeholder="Password"
+                    [formControl]="passwordCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-icon
+                    [ngStyle]="{
+                      color: isVisiblePassword ? '#3f51b5' : '#67666e',
+                      cursor: 'pointer'
+                    }"
+                    (click)="onChangePasswordVisibility()"
+                    matSuffix
+                    >visibility</mat-icon
+                  >
+
+                  <mat-error
+                    *ngIf="
+                      passwordCtrl.touched && passwordCtrl.hasError('required')
+                    "
+                  >
+                    <strong>Le mot de passe est obligatoire</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      passwordCtrl.touched && passwordCtrl.hasError('minlength')
+                    "
+                  >
+                    <strong>A minimum length of 6 caracters is required</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      passwordCtrl.touched && passwordCtrl.hasError('maxlength')
+                    "
+                  >
+                    <strong
+                      >A maximum length of 60 caracters is required</strong
+                    >
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                gap: 5px;
+                width: 100%;
+              "
+            >
+              <div class="form-group" style="flex: 1">
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Confirmer le mot de passe</mat-label>
+                  <input
+                    matInput
+                    [type]="isVisibleConfirmPassword ? 'text' : 'password'"
+                    placeholder="Confirm password"
+                    [formControl]="confirmPasswordCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-icon
+                    [ngStyle]="{
+                      color: isVisibleConfirmPassword ? '#3f51b5' : '#67666e',
+                      cursor: 'pointer'
+                    }"
+                    (click)="onChangeConfirmPasswordVisibility()"
+                    matSuffix
+                    >visibility</mat-icon
+                  >
+
+                  <mat-error
+                    *ngIf="
+                      confirmPasswordCtrl.touched &&
+                      confirmPasswordCtrl.hasError('required')
+                    "
+                  >
+                    <strong>Le mot de passe est obligatoire</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      confirmPasswordCtrl.touched &&
+                      confirmPasswordCtrl.hasError('minlength')
+                    "
+                  >
+                    <strong>A minimum length of 6 caracters is required</strong>
+                  </mat-error>
+                  <mat-error
+                    *ngIf="
+                      confirmPasswordCtrl.touched &&
+                      confirmPasswordCtrl.hasError('maxlength')
+                    "
+                  >
+                    <strong
+                      >A maximum length of 60 caracters is required</strong
+                    >
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="form-group" style="flex: 1">
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <mat-label>Numéro de téléphone</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    placeholder="Numéro de téléphone"
+                    [formControl]="phoneNumberCtrl"
+                    autocomplete="off"
+                  />
+                  <mat-error
+                    *ngIf="
+                      phoneNumberCtrl.touched &&
+                      phoneNumberCtrl.hasError('required')
+                    "
+                  >
+                    <strong> Required phone number </strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div save-action-selection-test>
+                <mat-radio-group
+                  aria-labelledby="ns-radio-group-label"
+                  class="ns-radio-group"
+                  [formControl]="roleCtrl"
+                >
+                  <mat-radio-button
+                    color="primary"
+                    *ngFor="let role of roles"
+                    [value]="role"
+                  >
+                    <div class="ns-radio-button">
+                      {{ role | role }}
+                    </div>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <button
+                mat-stroked-button
+                color="primary"
+                id="kt_signup_signin_submit"
+                (click)="submit()"
+              >
+                S'inscrire
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="optimasoft-infos">
+        <span class="auth-copyright-container">
+          © Sesame
+          {{ today | date : "yyyy" }} .
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

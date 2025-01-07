@@ -1,0 +1,55 @@
+.advertisement-list-container {
+  padding: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    .mat-form-field {
+      width: 200px;
+    }
+  }
+
+  .table-container {
+    .mat-table {
+      width: 100%;
+    }
+
+    .mat-column-image {
+      width: 100px;
+      padding: 8px;
+
+      .ad-thumbnail {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+    }
+
+    .mat-column-actions {
+      width: 100px;
+      text-align: right;
+    }
+
+    .mat-row:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    .delete-button {
+      color: #f44336;
+    }
+  }
+}
